@@ -1,0 +1,49 @@
+<div class="homepage_main center">
+	<div class="homepage_left left">
+		<div class="homepage_div">
+			<div class="homepage_div_top">
+				<span>关于HisunCMS</span>
+			</div>
+			<div class="homepage_div_main">
+				HisunCMS是静语计算机协会技术部开发的专业建站系统，系统包含多个模块，通过设置频道、栏目等用户可选择适合的模块，自定义网站功能，使网站的管理简单、快捷。<br /><br />
+				使用方式：<br /><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;1.在频道功能中选择添加频道<br /><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;2.在对用频道中添加栏目<br /><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;3.选择栏目所使用的模块<br /><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;4.在首页中进行管理<br />
+			</div>
+		</div>
+		<div class="homepage_div">
+			<div class="homepage_div_top">
+				<span>版权信息</span>
+			</div>
+			<div class="homepage_div_main">
+				<span class="left">授权XXXX使用</span><br /><br />
+				<span class="right">静语计算机协会</span><br />
+			</div>
+		</div>
+	</div>
+	<div class="homepage_right right">
+		<div class="homepage_div">
+			<div class="homepage_div_top">
+				<span>站点统计</span>
+			</div>
+			<div class="homepage_div_main" style="padding:0;">
+				<table>
+					<tr style="background:#EFEFEF;">
+						<td width="20%">用户</td><td width="20%">频道</td><td width="20%">栏目</td><td width="20%">单页</td><td width="20%">文章</td>
+					</tr>
+					<tr style="background:#F8F8F8;">
+						<td><?php echo $userNum; ?></td><td><?php echo $channelNum; ?></td><td><?php echo $columnNum; ?></td><td><?php echo $pageNum; ?></td><td><?php echo $articleNum; ?></td>
+					</tr>
+					<tr style="background:#EFEFEF;">
+						<td>产品</td><td>留言</td><td><a href="admin.php?mod=m_articlecheck"><span style="color:#cc0033" title="点击审核">未审核文章</span></a></td><td></td><td></td>
+					</tr>
+					<tr style="background:#F8F8F8;">
+						<td><?php echo $productNum; ?></td><td><?php echo $leavewordNum; ?></td><td><a href="admin.php?mod=m_articlecheck"><span style="color:#cc0033" title="点击审核"><?php echo $uncheckNum; ?></span></a></td><td></td><td></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

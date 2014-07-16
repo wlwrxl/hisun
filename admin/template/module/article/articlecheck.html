@@ -1,0 +1,62 @@
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".check_art").click(function(){
+		if(confirm("确认通过吗")){
+			var newthis=$(this);
+			$.post("admin.php?mod=m_articledeal",{pop:"check_art",id:$(newthis).attr("aid")},function(){
+				$(newthis).parent("td").parent("tr").remove();
+			});
+		}
+	});
+	$(".delete_art").click(function(){
+		if(confirm("确定删除吗")){
+			var newthis=$(this);
+			$.post("admin.php?mod=m_articledeal",{pop:"delete_art",id:$(newthis).attr("aid")},function(){
+				$(newthis).parent("td").parent("tr").remove();
+			});
+		}
+	});
+});
+</script>
+<div class="module_common_main center" style="margin-top:10px">
+	<div class="module_article_right" style="width:100%">
+		<div class="module_article_right_top">
+			<span>文章审核</span>
+		</div>
+		<div class="module_article_right_main">
+			<table>
+				<tr>
+					<th width="5%">Id</th>
+					<th width="30%">标题</th>
+					<th width="10%">投稿人</th>
+					<th width="10%">栏目</th>
+					<th width="15%">发布时间</th>
+					<th width="5%">排序</th>
+					<th width="25%">操作</th>
+				</tr>
+				<?php foreach ($m_articles as $m_article) { ?>
+					<?php
+						$contributeuser = $db->table("user")->where("`uid`='$m_article[contributeuid]'")->selectone("`name`");
+						$contributecolumn = $db->table("column")->where("`cid`='$m_article[column]'")->selectone("`name`,`channel`");
+					?>
+				<tr>
+					<td><?php echo $m_article['id']; ?></td>
+					<td><?php echo $m_article['title']; ?></td>
+					<td><?php echo $contributeuser['name']; ?></td>
+					<td><?php echo $contributecolumn['name']; ?></td>
+					<td><?php echo $m_article['pubDatetime']; ?></td>
+					<td><?php echo $m_article['order']; ?></td>
+					<td>
+						<a href="index.php?chan=<?php echo $contributecolumn['channel']; ?>&aid=<?php echo $m_article['id']; ?>&op=article_view" target="_blank">查看</a>&nbsp;
+						<a href="javascript:;" class="check_art" aid="<?php echo $m_article['id']; ?>">通过</a>&nbsp;
+						<a href="javascript:;" class="delete_art" aid="<?php echo $m_article['id']; ?>">删除</a>
+					</td>
+				</tr>
+				<?php } ?>
+			</table>
+		</div>
+		<div class="pageshow">
+			<?php echo $pageshow; ?>
+		</div>
+	</div>
+</div>

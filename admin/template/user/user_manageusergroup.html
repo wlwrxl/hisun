@@ -1,0 +1,33 @@
+<div class="user_right_group_top">
+<span>用户组管理</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+<?php foreach($usergroups as $usergroup){ ?>
+	<a href="admin.php?mod=user&op=manageusergroup&gid=<?php echo $usergroup['gid']; ?>"><?php echo $usergroup['name']; ?></a>&nbsp;&nbsp;
+<?php } ?>
+</div>
+<div class="user_right_group_list">
+	<form method="post" action="admin.php?mod=userdeal">
+	<table>
+	<tr>
+		<td width="120px"><span>基本信息</span></td><td><input type="submit" class="right" value="保存"/></td>
+	</tr>
+	<tr>
+		<td>组ID</td><td><?php echo $usergroupall['gid']; ?></td>
+	</tr>
+	<tr>
+		<td>组名称</td><td><input type="text" name="name" value="<?php echo $usergroupall['name']; ?>" /></td>
+	</tr>
+	<tr>
+		<td><span>权限设置</span></td><td></td>
+	</tr>
+	<tr>
+		<td>允许投送文章</td><td><input type="radio" name="allowcontribute" value="1" <?php if($usergroupall['allowcontribute']=='1'){ ?>checked="checked"<?php } ?> />&nbsp;&nbsp;是&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="allowcontribute" value="0" <?php if($usergroupall['allowcontribute']=='0'){ ?>checked="checked"<?php } ?> />&nbsp;&nbsp;否</td></td>
+	</tr>
+	<tr>
+		<td>允许自动审核</td><td><input type="radio" name="allowautocheck" value="1" <?php if($usergroupall['allowautocheck']=='1'){ ?>checked="checked"<?php } ?> />&nbsp;&nbsp;是&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="allowautocheck" value="0" <?php if($usergroupall['allowautocheck']=='0'){ ?>checked="checked"<?php } ?> />&nbsp;&nbsp;否</td></td>
+	</tr>
+	
+	<input type="hidden" name="gid" value="<?php echo $usergroupall['gid']; ?>" />
+	<input type="hidden" name="pop" value="edit_usergroup" />
+	</table>
+	</form>
+</div>

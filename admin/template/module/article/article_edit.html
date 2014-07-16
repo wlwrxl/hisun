@@ -1,0 +1,45 @@
+<script type="text/javascript">
+$(document).ready(function(){
+	$("input[name=isfocus]").click(function(){
+		if($(this).val()=='0'){
+			$(".focus_image").attr("style","display:none;");
+		}else{
+			$(".focus_image").attr("style","");
+		}
+	});
+	$("#dialog_image").click(function(){
+		$.dialog.load({url:"admin/template/dialog/dialog_imageup3.php"});
+	});
+});
+</script>
+<div class="module_article_right_create left">
+	<div class="module_article_right_create_top">
+		<span>编辑文章</span>
+	</div>
+	<div class="module_article_right_create_main">
+	<form method="post" action="admin.php?mod=m_articledeal">
+		标题：<input type="text" class="input_text" name="title" value="<?php echo $article['title']; ?>" /><br /><br />
+		栏目：<span style="color:#999999;"><?php echo $column['name']?></span><br /><br />
+		作者：<input type="text" class="input_text" name="author" value="<?php echo $article['author']; ?>" /><br /><br />
+		推送到首页焦点区：<input type="radio" name="isfocus" value="0" <?php if($article['isfocus']=='0'){ ?>checked="checked"<?php } ?> /> 否&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="isfocus" value="1" <?php if($article['isfocus']=='1'){ ?>checked="checked"<?php } ?> /> 是<br /><br />
+		<span class="focus_image" style="<?php if($article['isfocus']=='0'){?>display:none;<?php } ?>">
+		文章焦点图：<input type="text" name="image" id="image" class="input_text" value="<?php echo $article['focusimage']; ?>"/> <input type="button" id="dialog_image" value="上传" /><br /><br />
+		</span>
+		<!-- 来源： --><input type="hidden" class="input_text" name="source" value="<?php echo $article['source']; ?>" /><!-- <br /><br /> -->
+		<!-- 地址： --><input type="hidden" class="input_text" name="sourceurl" value="<?php echo $article['sourceurl']; ?>" /><!-- <br /><br /> -->
+		时间：<input type="text" class="input_text" name="pubDatetime" value="<?php echo $article['pubDatetime']; ?>" /><br /><br />
+		<textarea id="ueditor" name="content"><?php echo $article['content']; ?></textarea><br />
+		<script type="text/javascript">
+			var editor = new UE.ui.Editor();
+			editor.render("ueditor");
+		</script>
+		<!-- 初始点击数： --><input type="hidden" class="input_text" name="clicknum" value="<?php echo $article['clicknum']; ?>" style="width:50px; margin-right:50px;" />
+		排序：<input type="text" class="input_text" name="order" value="<?php echo $article['order']; ?>" style="width:50px;" /><br /><br />
+		<input type="hidden" name="id" value="<?php echo $article['id']; ?>" />
+		<input type="hidden" name="chan" value="<?php echo $chan; ?>" />
+		<input type="hidden" name="col" value="<?php echo $article['column']; ?>" />
+		<input type="hidden" name="pop" value="edit_art" />
+		<input type="submit" class="right cp" value="保存" /><br /><br />
+	</form>
+	</div>
+</div>
